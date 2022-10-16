@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, serif;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.content-wrapper .title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #FFBD46;
+    text-align: center;
+}
+
+.content-wrapper .theme-switcher-inner {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.content-wrapper .configure {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0 60px 0;
+    height: 69px;
+}
+
+.content-wrapper .revers-currencies {
+    display: flex;
+    align-items: center;
+}
+
+.content-wrapper .card-input {
+    width: 334px;
+    height: 196px;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 6px rgba(14, 87, 214, 0.26);
+    border-radius: 20px;
+    padding: 17px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.content-wrapper .card-input-block {
+    position: relative;
+    width: 100%;
+    height: 52px;
+}
+
+.content-wrapper .card-input-block__currency {
+    position: absolute;
+    top: 15px;
+    left: 14px;
+    color: #0E57D6;
+}
+
+.content-wrapper .card-input-inner {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.alert {
+    position: absolute;
+    top: -55px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.content-wrapper .card-input__item {
+    height: 100%;
+    width: 100%;
+    background: #F2F2F2;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding-left: 60px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.content-wrapper .card-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.content-wrapper .card-result {
+    display: flex;
+    flex-direction: column;
+}
+
+.content-wrapper .card-result-top {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.content-wrapper .card-result-top__value {
+    margin-right: 5px;
+}
+
+.content-wrapper .card-result-bot {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.content-wrapper .card-result-bot__value {
+    margin-right: 10px;
+}
+
+.content-wrapper .offers {
+    display: flex;
+    justify-content: center;
+}
+
+.content-wrapper .offers-list {
+    list-style: none;
+    padding: 0;
+    width: 368px;
+}
+
+.content-wrapper .offers-list-item {
+    display: flex;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 6px rgba(14, 87, 214, 0.26);
+    border-radius: 20px;
+    height: 55px;
+    align-items: center;
+    padding: 0 15px;
+    margin: 10px 0;
+}
+
+.content-wrapper .offers-list-item__logo {
+    height: 20px;
+}
+
+.content-wrapper .offers-right {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-wrapper .offers-right__currency {
+    margin-left: 15px;
+}
+
+.form-select {
+    width: initial;
+}
+
+.hide {
+    opacity: 0;
+}
+
