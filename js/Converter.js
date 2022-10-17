@@ -191,14 +191,20 @@ export default class Converter {
         if (this.GetValueToConvert().value === '') this.GetValueToConvert().value = 0;
         let valueToValidate = Array.from(this.GetValueToConvert().value);
         if (valueToValidate.length > 19) valueToValidate.length = 19;
-
         if (valueToValidate[0] === '0' && !isNaN(+valueToValidate[1]) && valueToValidate.length > 1) {
             valueToValidate.shift();
         }
-        this.GetValueToConvert().value = valueToValidate
+        let temporaryRes = valueToValidate
             .map(e => e === '.' ? '.' : Number(e))
-            .filter(e => (!isNaN(e) || e === '.'))
-            .join('');
+            .filter(e => (!isNaN(e) || e === '.'));
+        let result = [];
+        let countOfDots = 0;
+        for (let i = 0; i < temporaryRes.length; i++) {
+            if (temporaryRes[i] !== '.') result.push(temporaryRes[i]);
+            if (temporaryRes[i] === '.' && countOfDots === 0) result.push(temporaryRes[i]);
+            if (temporaryRes[i] === '.') countOfDots++;
+        }
+        this.GetValueToConvert().value = result.join('');
         this._calcResult();
     }
 
