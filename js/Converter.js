@@ -16,62 +16,63 @@ export default class Converter {
         eurCount,
         plnCount,
     ) {
-        const _convertFromCurrency = convertFromCurrency;
-        const _convertToCurrency = convertToCurrency;
-        const _inputLineCurrency = inputLineCurrency;
-        const _valueToConvert = valueToConvert;
-        const _outputCurrencyFrom = outputCurrencyFrom;
-        const _outputCurrencyTo = outputCurrencyTo;
-        const _outputValueFrom = outputValueFrom;
-        const _outputValueTo = outputValueTo;
-        const _errorMessageItem = errorMessageItem;
-        const _reversCurrencyButton = reversCurrencyButton;
-        const _usdCount = usdCount;
-        const _eurCount = eurCount;
-        const _plnCount = plnCount;
-        const _currencyList = this._createCurrencyList();
-        this.GetConvertFromCurrency = () => {
-            return _convertFromCurrency;
-        }
-        this.GetConvertToCurrency = () => {
-            return _convertToCurrency;
-        }
-        this.GetInputLineCurrency = () => {
-            return _inputLineCurrency;
-        }
-        this.GetValueToConvert = () => {
-            return _valueToConvert;
-        }
-        this.GetOutputCurrencyFrom = () => {
-            return _outputCurrencyFrom;
-        }
-        this.GetOutputCurrencyTo = () => {
-            return _outputCurrencyTo;
-        }
-        this.GetOutputValueFrom = () => {
-            return _outputValueFrom;
-        }
-        this.GetOutputValueTo = () => {
-            return _outputValueTo;
-        }
-        this.GetErrorMessageItem = () => {
-            return _errorMessageItem;
-        }
-        this.GetReversCurrencyButton = () => {
-            return _reversCurrencyButton;
-        }
-        this.GetCurrencyList = () => {
-            return _currencyList;
-        }
-        this.GetUSDCount = () => {
-            return _usdCount;
-        }
-        this.GetEURCount = () => {
-            return _eurCount;
-        }
-        this.GetPLCount = () => {
-            return _plnCount;
-        }
+        this._convertFromCurrency = convertFromCurrency;
+        this._convertToCurrency = convertToCurrency;
+        this._inputLineCurrency = inputLineCurrency;
+        this._valueToConvert = valueToConvert;
+        this._outputCurrencyFrom = outputCurrencyFrom;
+        this._outputCurrencyTo = outputCurrencyTo;
+        this._outputValueFrom = outputValueFrom;
+        this._outputValueTo = outputValueTo;
+        this._errorMessageItem = errorMessageItem;
+        this._reversCurrencyButton = reversCurrencyButton;
+        this._usdCount = usdCount;
+        this._eurCount = eurCount;
+        this._plnCount = plnCount;
+        this._currencyList = this._createCurrencyList();
+    }
+
+    GetConvertFromCurrency = () => {
+        return this._convertFromCurrency;
+    }
+    GetConvertToCurrency = () => {
+        return this._convertToCurrency;
+    }
+    GetInputLineCurrency = () => {
+        return this._inputLineCurrency;
+    }
+    GetValueToConvert = () => {
+        return this._valueToConvert;
+    }
+    GetOutputCurrencyFrom = () => {
+        return this._outputCurrencyFrom;
+    }
+    GetOutputCurrencyTo = () => {
+        return this._outputCurrencyTo;
+    }
+    GetOutputValueFrom = () => {
+        return this._outputValueFrom;
+    }
+    GetOutputValueTo = () => {
+        return this._outputValueTo;
+    }
+    GetErrorMessageItem = () => {
+        return this._errorMessageItem;
+    }
+    GetReversCurrencyButton = () => {
+        return this._reversCurrencyButton;
+    }
+    GetCurrencyList = () => {
+        return this._currencyList;
+    }
+    GetUSDCount = () => {
+        return this._usdCount;
+    }
+    GetEURCount = () => {
+        return this._eurCount;
+    }
+    GetPLCount = () => {
+        return this._plnCount;
     }
 
     _createCurrencyList() {
@@ -83,7 +84,6 @@ export default class Converter {
             this.GetErrorMessageItem().classList.toggle('hide');
         });
         request.addEventListener('load', () => {
-
             if (request.readyState === 4 && request.status === 200) {
                 const data = JSON.parse(request.response);
                 data.forEach(e => {
@@ -174,8 +174,6 @@ export default class Converter {
                 this.GetEURCount().innerHTML = (this.GetValueToConvert().value / EURRate).toFixed(2);
                 this.GetPLCount().innerHTML = (this.GetValueToConvert().value / PLNRate).toFixed(2);
             }
-
-
         } else {
             let currencyFrom;
             this.GetCurrencyList().forEach(e => {
@@ -197,20 +195,9 @@ export default class Converter {
         if (valueToValidate[0] === '0' && !isNaN(+valueToValidate[1]) && valueToValidate.length > 1) {
             valueToValidate.shift();
         }
-        let isDotsPresent = 0;
         this.GetValueToConvert().value = valueToValidate
-            .filter(e => {
-                if (!isNaN(e) || e === '.') {
-                    if (e === '.') {
-                        if (isDotsPresent === 0) {
-                            isDotsPresent++;
-                            return true;
-                        } else return false;
-                    } else {
-                        return true;
-                    }
-                } else return false;
-            })
+            .map(e => e === '.' ? '.' : Number(e))
+            .filter(e => (!isNaN(e) || e === '.'))
             .join('');
         this._calcResult();
     }
@@ -232,7 +219,7 @@ export default class Converter {
 
         this.GetConvertFromCurrency().addEventListener('change', () => this._calcResult());
         this.GetConvertToCurrency().addEventListener('change', () => this._calcResult());
-        // this.GetValueToConvert().addEventListener('input', () => this._calcResult());
+
         this.GetValueToConvert().addEventListener('input', () => this._toValidateForm());
         this.GetReversCurrencyButton().addEventListener('click', () => this._reverseCurrencies());
     }
