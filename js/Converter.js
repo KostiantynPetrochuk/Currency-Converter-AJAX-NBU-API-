@@ -83,6 +83,7 @@ export default class Converter {
             this.GetErrorMessageItem().classList.toggle('hide');
         });
         request.addEventListener('load', () => {
+
             if (request.readyState === 4 && request.status === 200) {
                 const data = JSON.parse(request.response);
                 data.forEach(e => {
@@ -92,7 +93,6 @@ export default class Converter {
                     this._addCurrencyToList(this.GetConvertFromCurrency(), e.cc);
                     this._addCurrencyToList(this.GetConvertToCurrency(), e.cc);
                 })
-
             } else {
                 this.GetErrorMessageItem().classList.toggle('hide');
             }
@@ -169,22 +169,50 @@ export default class Converter {
             }
         });
         if (this.GetConvertFromCurrency().value === "UAH") {
+            if (USDRate !== undefined) {
+                this.GetUSDCount().innerHTML = (this.GetValueToConvert().value / USDRate).toFixed(2);
+                this.GetEURCount().innerHTML = (this.GetValueToConvert().value / EURRate).toFixed(2);
+                this.GetPLCount().innerHTML = (this.GetValueToConvert().value / PLNRate).toFixed(2);
+            }
 
-            this.GetUSDCount().innerHTML = (this.GetValueToConvert().value / USDRate).toFixed(2);
-            this.GetEURCount().innerHTML = (this.GetValueToConvert().value / EURRate).toFixed(2);
-            this.GetPLCount().innerHTML = (this.GetValueToConvert().value / PLNRate).toFixed(2);
+
         } else {
             let currencyFrom;
             this.GetCurrencyList().forEach(e => {
                 if (e.cc === this.GetConvertFromCurrency().value) {
                     currencyFrom = e.rate;
                 }
-
             });
             this.GetUSDCount().innerHTML = ((this.GetValueToConvert().value * currencyFrom) / USDRate).toFixed(2);
             this.GetEURCount().innerHTML = ((this.GetValueToConvert().value * currencyFrom) / EURRate).toFixed(2);
             this.GetPLCount().innerHTML = ((this.GetValueToConvert().value * currencyFrom) / PLNRate).toFixed(2);
         }
+    }
+
+    _toValidateForm = () => {
+        if (this.GetValueToConvert().value === '') this.GetValueToConvert().value = 0;
+        let valueToValidate = Array.from(this.GetValueToConvert().value);
+        if (valueToValidate.length > 19) valueToValidate.length = 19;
+
+        if (valueToValidate[0] === '0' && !isNaN(+valueToValidate[1]) && valueToValidate.length > 1) {
+            valueToValidate.shift();
+        }
+        let isDotsPresent = 0;
+        this.GetValueToConvert().value = valueToValidate
+            .filter(e => {
+                if (!isNaN(e) || e === '.') {
+                    if (e === '.') {
+                        if (isDotsPresent === 0) {
+                            isDotsPresent++;
+                            return true;
+                        } else return false;
+                    } else {
+                        return true;
+                    }
+                } else return false;
+            })
+            .join('');
+        this._calcResult();
     }
 
     startConverter() {
@@ -204,7 +232,8 @@ export default class Converter {
 
         this.GetConvertFromCurrency().addEventListener('change', () => this._calcResult());
         this.GetConvertToCurrency().addEventListener('change', () => this._calcResult());
-        this.GetValueToConvert().addEventListener('input', () => this._calcResult());
+        // this.GetValueToConvert().addEventListener('input', () => this._calcResult());
+        this.GetValueToConvert().addEventListener('input', () => this._toValidateForm());
         this.GetReversCurrencyButton().addEventListener('click', () => this._reverseCurrencies());
     }
 

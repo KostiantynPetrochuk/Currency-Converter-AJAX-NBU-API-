@@ -15,11 +15,6 @@ body {
     text-align: center;
 }
 
-.content-wrapper .theme-switcher-inner {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .content-wrapper .configure {
     display: flex;
     justify-content: space-between;
