@@ -1,83 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
 
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="js/main.js" defer></script>
     <title>Currency Converter</title>
 </head>
 
 <body>
-<main>
-    <div class="container">
-        <div class="content-wrapper">
-            <h3 class="title">Currency Converter</h3>
-            <div class="configure">
-                <select class="convert-from form-select form-select-lg mb-10" aria-label=".form-select-lg example">
-                    <option class="from__currency">UAH</option>
-                </select>
-                <div class="revers-currencies">
-                    <img class="revers-currencies__img" src="img/currency-reverse.svg" alt=""/>
-                </div>
-                <select class="convert-to form-select form-select-lg mb-10" aria-label=".form-select-lg example">
-                    <option class="to__currency">UAH</option>
-                </select>
-            </div>
-            <div class="card-input-inner">
-                <!--                Error!-->
-                <div class="alert alert-danger hide" role="alert">
-                    Something went wrong, try again later :)
-                </div>
-
-                <div class="card-input"><span class="card-title">Amount</span>
-                    <label class="card-input-block"><span class="card-input-block__currency">---</span>
-                        <input class="card-input__item" value="0"/>
-                    </label>
-                    <div class="card-result">
-                            <span class="card-result-top">
-                                <span class="card-result-top__value">---</span>
-                                <span class="card-result-top__currency">---</span>
-                                <span> =</span>
-                            </span>
-                        <span class="card-result-bot">
-                                <span class="card-result-bot__value">---</span>
-                                <span class="card-result-bot__currency">---</span>
-                            </span>
-                    </div>
-                </div>
-            </div>
-            <div class="offers">
-                <ul class="offers-list">
-                    <li class="offers-list-item">
-                        <img class="offers-list-item__logo" src="img/usd.png" alt=""/>
-                        <div class="offers-right">
-                            <span class="offers-right__currency">USD</span>
-                            <span class="offers-right__count" id="usd-value">0.00</span>
-                        </div>
-                    </li>
-                    <li class="offers-list-item">
-                        <img class="offers-list-item__logo" src="img/euro.png" alt=""/>
-                        <div class="offers-right">
-                            <span class="offers-right__currency">EUR</span>
-                            <span class="offers-right__count" id="eur-value">0.00</span>
-                        </div>
-                    </li>
-                    <li class="offers-list-item">
-                        <img class="offers-list-item__logo" src="img/zl.png" alt=""/>
-                        <div class="offers-right">
-                            <span class="offers-right__currency">PLN</span>
-                            <span class="offers-right__count" id="pln-value">0.00</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="row">
+        <!-- entry point -->
     </div>
-</main>
 </body>
 
 </html>

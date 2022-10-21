@@ -1,5 +1,6 @@
 body {
     font-family: Arial, serif;
+    overflow: hidden;
 }
 
 .container {
@@ -7,6 +8,7 @@ body {
     margin: 0 auto;
     padding: 0 15px;
 }
+
 
 .content-wrapper .title {
     font-size: 36px;
@@ -148,4 +150,3 @@ body {
 .hide {
     opacity: 0;
 }
-
